@@ -1,0 +1,14 @@
+create or replace function  calculate_salary(d_date date,v_sal number) return 
+number is 
+v_salperday number (10);
+v_nowsal  number(10);
+
+begin
+
+v_salperday:=v_sal/(last_day(d_date)-trunc(d_date,'month'));
+
+
+v_nowsal:=v_salperday*(d_date-trunc(d_date,'month')+1);
+
+return v_nowsal ;
+end calculate_salary;

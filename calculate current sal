@@ -17,24 +17,25 @@ end calculate_salary;
 using cursor 
 create or replace function cal_sal(d_date date) return number is
   
-  v_ename scott.emp.ename%type;
-  v_sal scott.emp.sal%type;
-  v_dailysal number;
   v_deservedsal number;
   now_sal number;
-   cursor x is select ename, sal,sal/(cast(to_char(last_day(d_date),'dd')as int)) as daily_sal,
+   cursor x is select 
   (trunc(d_date)-trunc(d_date,'mm')+1)*( sal/cast(to_char(last_day(d_date),'dd')as int)) as deserved_sal
-  from scott.emp;
- 
+  from omar;
+   
   begin 
-   open x;
-   loop
-   fetch   x into v_ename,v_sal,v_dailysal, v_deservedsal;
+ 
+    open x ;
+    loop
+    
+  fetch x into  v_deservedsal;
+  
    exit when x%notfound;
-    DBMS_OUTPUT.PUT_LINE('Name:'||v_ename||'   '||' salary'||v_sal||'    '||'dailysal'||'     '||v_dailysal||'     '||' deservedsal'||'      '||v_deservedsal);
+    DBMS_OUTPUT.PUT_LINE(' deservedsal'||v_deservedsal);
    end loop;
    
    return now_sal;
-   end;
+   end;عحيشفث
+
    select  cal_sal(sysdate)  from dual
 

@@ -35,7 +35,7 @@ create or replace function cal_sal(d_date date) return number is
    end loop;
    
    return now_sal;
-   end;عحيشفث
+   end;
 
    select  cal_sal(sysdate)  from dual
 
